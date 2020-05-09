@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.boot.dto.Greeting;
 
-/**
- * boot/greeting
- */
 @RestController()
 @RequestMapping("/greeting")
 public class GreetingController {
@@ -24,23 +21,20 @@ public class GreetingController {
 	
 	@Value("${array.numbers}")
 	private List<Integer> arrayNumber;
-	
 
 	private static final String template = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
-	/**
-	 * boot/greeting 
-	 */
+	// boot/greeting
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 
 	/**
-	 * boot/greeting/app-config-value
 	 * test get configuration value from application.properties
 	 */
+	// boot/greeting/app-config-value
 	@GetMapping("/app-config-value")
 	public String appConfigValue() {
 		return applicationValue + " " + arrayNumber;
