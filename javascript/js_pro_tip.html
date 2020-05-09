@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>############</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">	
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=latin-ext,vietnamese" rel="stylesheet">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
+</head>
+<body>
+	
+</body>
+<script>
+// GOOD WAY TO CONSOLE LOG OBJECT
+let foo = {name: 'dick', age: 10};
+let bar = { name: 'mike', age: 20};
+let baz = { name: 'jade', age: 30, status: true};
+console.log({foo, bar, baz});
+
+// ---- console log with color
+console.log('%c My Friends', 'color: orange; font-weight: bold');
+
+// ---- console table: with table
+console.table([foo, bar, baz]);
+
+// ---- console time
+console.time('looper');
+
+let i = 0;
+while (i < 1000000) { i++ }
+
+console.timeEnd('looper');
+
+// ---- console trace: show places a function is called
+function callme() {
+	console.trace('do some thing');
+}
+
+callme();
+callme();
+
+// ---- string interpolation
+const cat = {
+	name: 'bob',
+	meal: '10',
+	diet: 'cat food',
+	legs: 4
+}
+// bad code
+function feedAnimalBad(animal) {	
+	console.log(`Feed ${animal.name} ${animal.meal} kilos of ${animal.diet}`);
+}
+// good code
+function feedAnimalGood(animal) {
+	const { name, meal, diet } = animal;
+	console.log(`Feed ${name} ${meal} kilos of ${diet}`);
+}
+feedAnimalGood(cat);
+
+// ---- merge object
+let pikachu = { name: 'pikachu' };
+let stats = { hp: 100, attack: 40, defense: 50 };
+
+let fullpika = Object.assign(pikachu, stats); console.log(fullpika);
+// or
+let fullpika2 = {...pikachu, ...stats}; console.log(fullpika2);
+
+
+// exchange 0 and 1
+let exchange = [0, 1, null, undefined];
+let afterExchange = exchange.map(item => item === 1 ? 0 : 1);
+console.log(afterExchange);
+
+
+</script>
+</html>
