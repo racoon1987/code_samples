@@ -1,12 +1,12 @@
 package com.sample.boot.model;
 
-public class Account {
+public class AccountOne {
 
 	private Long id;
 	private String name;
 	private String number;
 
-	public Account(Long id, String name, String number) {
+	public AccountOne(Long id, String name, String number) {
 		super();
 		this.id = id;
 		this.name = name;
