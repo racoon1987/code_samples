@@ -33,6 +33,9 @@
             }]
         }
     },
+    "sort" : [
+      {"createDate" : {"order" : "asc"}}
+	],
     "aggs":
     {
         "group_by_date_and_status":
