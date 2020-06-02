@@ -2,78 +2,75 @@
 // group by datetime và các trạng thái bài viết, sort theo createDate
 
 {
-    "query":
-    {
-        "bool":
-        {
+    "size": 0,
+    "query": {
+        "bool": {
             "filter": [
-            {
-                "nested":
                 {
-                    "path": "topicSentiment",
-                    "query":
-                    {
-                        "terms":
-                        {
-                            "topicSentiment.id.keyword": ["5da3d9334317ab1932c4b923"]
+                    "nested": {
+                        "path": "topicSentiment",
+                        "query": {
+                            "terms": {
+                                "topicSentiment.id.keyword": [
+                                    "5da3d9334317ab1932c4b923"
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "range": {
+                        "createDate": {
+                            "gte": "30/05/2020",
+                            "lte": "02/06/2020",
+                            "format": "dd/MM/yyyy"
                         }
                     }
                 }
-            },
-            {
-                "range":
-                {
-                    "createDate":
-                    {
-                        "gte": "30/05/2020",
-                        "lte": "02/06/2020",
-                        "format": "dd/MM/yyyy"
-                    }
-                }
-            }]
+            ]
         }
     },
-    "sort" : [
-        {"createDate" : {"order" : "asc"}}
-    ],
-    "aggs":
-    {
-        "group_by_date_and_status":
+    "sort": [
         {
-            "date_histogram":
-            {
+            "createDate": {
+                "order": "asc"
+            }
+        }
+    ],
+    "aggs": {
+        "group_by_date_and_status": {
+            "date_histogram": {
                 "field": "createDate",
                 "interval": "1d",
                 "format": "dd/MM/yyyy"
             },
-            "aggs":
-            {
-                "ignored":
-                {
-                    "terms":
-                    {
-                        "field": "isIgnored"
+            "aggs": {
+                "ignored": {
+                    "filter": {
+                        "match": {
+                            "isIgnored": 1
+                        }
                     }
                 },
-                "observed":
-                {
-                    "terms":
-                    {
-                        "field": "isObserved"
+                "observed": {
+                    "filter": {
+                        "match": {
+                            "isObserved": 1
+                        }
                     }
                 },
-                "processed":
-                {
-                    "terms":
-                    {
-                        "field": "isProcessed"
+                "processed": {
+                    "filter": {
+                        "match": {
+                            "isProcessed": 1
+                        }
                     }
                 },
-                "read":
-                {
-                    "terms":
-                    {
-                        "field": "isRead"
+                "read": {
+                    "filter": {
+                        "match": {
+                            "isRead": 1
+                        }
                     }
                 }
             }
