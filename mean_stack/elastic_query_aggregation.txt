@@ -1,0 +1,79 @@
+// thống kê các bản ghi lọc theo khoảng thời gian và chủ đề (topicSentiment), 
+// group by datetime và các trạng thái bài viết
+
+{
+    "query":
+    {
+        "bool":
+        {
+            "filter": [
+            {
+                "nested":
+                {
+                    "path": "topicSentiment",
+                    "query":
+                    {
+                        "terms":
+                        {
+                            "topicSentiment.id.keyword": ["5da3d9334317ab1932c4b923"]
+                        }
+                    }
+                }
+            },
+            {
+                "range":
+                {
+                    "createDate":
+                    {
+                        "gte": "30/05/2020",
+                        "lte": "02/06/2020",
+                        "format": "dd/MM/yyyy"
+                    }
+                }
+            }]
+        }
+    },
+    "aggs":
+    {
+        "group_by_date_and_status":
+        {
+            "date_histogram":
+            {
+                "field": "createDate",
+                "interval": "1d",
+                "format": "dd/MM/yyyy"
+            },
+            "aggs":
+            {
+                "ignored":
+                {
+                    "terms":
+                    {
+                        "field": "isIgnored"
+                    }
+                },
+                "observed":
+                {
+                    "terms":
+                    {
+                        "field": "isObserved"
+                    }
+                },
+                "processed":
+                {
+                    "terms":
+                    {
+                        "field": "isProcessed"
+                    }
+                },
+                "read":
+                {
+                    "terms":
+                    {
+                        "field": "isRead"
+                    }
+                }
+            }
+        }
+    }
+}
