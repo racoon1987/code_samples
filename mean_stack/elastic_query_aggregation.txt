@@ -1,5 +1,5 @@
 // thống kê các bản ghi lọc theo khoảng thời gian và chủ đề (topicSentiment), 
-// group by datetime và các trạng thái bài viết
+// group by datetime và các trạng thái bài viết, sort theo createDate
 
 {
     "query":
@@ -34,8 +34,8 @@
         }
     },
     "sort" : [
-      {"createDate" : {"order" : "asc"}}
-	],
+        {"createDate" : {"order" : "asc"}}
+    ],
     "aggs":
     {
         "group_by_date_and_status":
