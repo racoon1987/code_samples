@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<script src="https://momentjs.com/downloads/moment.min.js"></script>
+</head>
+<body>
+	
+</body>
+<script>
+function getDateRanges(from, to) {
+	var dateArr = [];
+	var startDate = moment(from, 'DD-MM-YYYY');
+	var endDate = moment(to, 'DD-MM-YYYY');
+
+	var start = new Date(startDate);
+	var end = new Date(endDate);
+
+	while(start <= end){
+	   dateArr.push(moment(start).format('DD-MM-YYYY'));
+	   var newDate = start.setDate(start.getDate() + 1);
+	   start = new Date(newDate);  
+	}
+
+	return dateArr;
+}
+
+console.log(getDateRanges('01-06-2020', '15-06-2020'));
+
+
+</script>
+</html>

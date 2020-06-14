@@ -57,12 +57,12 @@ function feedAnimalGood(animal) {
 feedAnimalGood(cat);
 
 // ---- merge object
-let pikachu = { name: 'pikachu' };
+let pikachu = { name: 'pikachu', defense: 333 };
 let stats = { hp: 100, attack: 40, defense: 50 };
 
-let fullpika = Object.assign(pikachu, stats); console.log(fullpika);
+let fullpika = Object.assign(pikachu, stats); console.log({fullpika});
 // or
-let fullpika2 = {...pikachu, ...stats}; console.log(fullpika2);
+let fullpika2 = {...pikachu, ...stats}; console.log({fullpika2});
 
 
 // exchange 0 and 1
